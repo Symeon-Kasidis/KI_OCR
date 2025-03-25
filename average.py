@@ -562,16 +562,6 @@ def calculate_tp_fp_fn_tn(ground_truth, responses, modelName):
     #round only at the return to keep calcualtions as accurate as possible
     return CM_Result(round(avg_precision, 2), round(avg_accuracy, 2), round(avg_sensitivity, 2), round(avg_f1, 2))
 
-def calculate_precision(ground_truth, response, n_gram_size=1):
-    ground_truth_ngrams = set(ground_truth[i:i + n_gram_size] for i in range(len(ground_truth) - n_gram_size + 1))
-    response_ngrams = set(response[i:i + n_gram_size] for i in range(len(response) - n_gram_size + 1))
-
-    if not response_ngrams:
-        return 0.0
-
-    correct_predictions = len(ground_truth_ngrams.intersection(response_ngrams))
-    return correct_predictions / len(response_ngrams)
-
 def calculate_auc_roc(ground_truth, responses, modelName):
     gt_chars = list(ground_truth)  # Convert to list for position-based comparison
     fpr = []
@@ -645,16 +635,15 @@ def calculate_k_cross(gt, responses):
 def metricsKCross(data, gt, title):
     answers = {}
     for label, values in data.items():
-        #res = [calculate_precision(ground_truth, response) for response in values]
         res = calculate_k_cross(gt, values)
         answers[label] = cross_Val_Result(res, round(np.mean(res),2), round(np.std(res),2))
     create_cross_table(answers, title)
 
     #create_metric_table(answers)    
 
-def word_level_levenshtein_roc_word_only(ground_truth, response, threshold=1):
+def word_level_levenshtein_roc_word_only(gt, response, threshold=1):
 
-    ground_words = ground_truth.split()
+    ground_words = gt.split()
     response_words = response.split()
 
     y_true_all = []
@@ -691,16 +680,13 @@ def word_level_levenshtein_roc_word_only(ground_truth, response, threshold=1):
     #print(roc_auc)
     return fpr, tpr, roc_auc
 
-def average_roc(ground_truth, responses, threshold=1):
-    """
-    Calculates and plots the average ROC curve and AUC.
-    """
+def average_roc(gt, responses, threshold=1):
     tprs = []
     aucs = []
     mean_fpr = np.linspace(0, 1, 100)  # Common FPR values
 
     for response in responses:
-        fpr, tpr, roc_auc = word_level_levenshtein_roc_word_only(ground_truth, response, threshold)
+        fpr, tpr, roc_auc = word_level_levenshtein_roc_word_only(gt, response, threshold)
         tprs.append(np.interp(mean_fpr, fpr, tpr))
         tprs[-1][0] = 0.0  # Ensure the starting point is 0
         aucs.append(roc_auc)
@@ -722,76 +708,6 @@ def average_roc(ground_truth, responses, threshold=1):
     #plt.title('Average Receiver Operating Characteristic')
     #plt.legend(loc="lower right")
     #plt.show()
-
-def word_level_levenshtein_roc_word_only2(ground_truth, response, threshold=1):
-    """
-    Generates an ROC curve based on word-level Levenshtein distance (word-level only).
-    """
-    ground_words = ground_truth.split()
-    response_words = response.split()
-
-    y_true_all = []
-    y_scores_all = []
-
-    ground_index = 0
-    response_index = 0
-
-    while ground_index < len(ground_words) and response_index < len(response_words):
-        ground_word = ground_words[ground_index]
-        response_word = response_words[response_index]
-
-        distance = ds(ground_word.lower(), response_word.lower())
-
-        y_true_all.append(1 if distance <= threshold else 0)
-        y_scores_all.append(1 - (distance / max(len(ground_word), len(response_word), 1)))
-
-        ground_index += 1
-        response_index += 1
-
-    while ground_index < len(ground_words):
-        y_true_all.append(0)
-        y_scores_all.append(0)
-        ground_index +=1
-
-    while response_index < len(response_words):
-        y_true_all.append(0)
-        y_scores_all.append(0)
-        response_index +=1
-
-    return np.array(y_true_all), np.array(y_scores_all) # convert to numpy arrays.
-
-def average_pr_auc(ground_truth, responses, threshold=1):
-    """
-    Calculates and plots the average PR curve and AUC.
-    """
-    precisions = []
-    recalls = []
-    pr_aucs = []
-
-    for response in responses:
-        y_true, y_scores = word_level_levenshtein_roc_word_only(ground_truth, response)
-        print(y_true, y_scores)
-        precision, recall, _ = precision_recall_curve(y_true, y_scores)
-
-        # Handle cases where precision or recall is empty
-        if len(precision) > 0 and len(recall) > 0:
-            precisions.append(precision)
-            recalls.append(recall)
-            pr_aucs.append(auc(recall, precision))
-
-    if not precisions: #if precisions is empty, there were no valid responses.
-      print("No valid responses to generate PR curve.")
-      return
-    
-    mean_recall = np.linspace(0, 1, 100)
-    interpolated_precisions = []
-
-    for i in range(len(precisions)):
-        interpolated_precisions.append(np.interp(mean_recall, recalls[i], precisions[i]))
-    mean_precision = np.mean(interpolated_precisions, axis=0)
-    mean_pr_auc = auc(mean_recall, mean_precision)
-
-    return for_ROC_Result(mean_pr_auc, mean_precision, mean_recall)
 
 def roc_metrics(data, gt):
     answers = {}
