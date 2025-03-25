@@ -1,0 +1,159 @@
+PRÜFUNGSAMT
+DUALES STUDIUM   
+
+ANMELDEFORMULAR BACHELORARBEIT   
+
+Persönliche Daten   
+
+field name: Nachname : Kasidis
+field name: Vorname : Symeon
+field name: Geburtsdatum : 09.10.2001
+field name: Geburtsort : Giannitsa
+field name: Studiengang : Informatik
+field name: Studienbeginn : WiSe 2021
+field name: Matrikelnummer : 102102123   
+
+Der Pflicht-Termin mit dem/der Betreuer:in hat stattgefunden. 
+
+Bitte ausfüllen   
+
+field name: Betreuer der Abschlussarbeit : Max Musterman
+field name: Titel der Abschlussarbeit : Ein Vergleich zwischen KI-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten   
+
+Hiermit stimme ich den Bedingungen in der aktuellen Studien- und Prüfungsordnung der Hochschule zu: 
+
+field name: Ort, Datum (Studierender) : Düsseldorf, 09.02.2025
+field name: Unterschrift Studierender :   
+
+field name: Ort, Datum (Betreuer) : Düsseldorf, 08.02.2025
+field name: Unterschrift Betreuer :   
+
+Druckfehler und Irrtümer vorbehalten
+Datum 25.10.2024;
+Non‐field text:
+–––––––––––––––––––––––––
+PRÜFUNGSAMT DUALES STUDIUM
+iu INTERNATIONALE HOCHSCHULE
+ANMELDEFORMULAR BACHELORARBEIT
+Persönliche Daten
+Der Pflicht-Termin mit dem:der Betreuer:in hat stattgefunden.
+Bitte ausfüllen
+Hiermit stimme ich den Bedingungen in der aktuellen Studien- und Prüfungsordnung der Hochschule zu:
+Druckfehler und Irrtümer vorbehalten.
+Datum 25.10.2024   
+
+–––––––––––––––––––––––––
+Fields:
+–––––––––––––––––––––––––
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : WiSe 2021
+Matrikelnummer : 102102123   
+
+Betreuer der Abschlussarbeit : Max Musterman
+Titel der Abschlussarbeit : Ein Vergleich zwischen KI-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten   
+
+Ort, Datum (Unterschrift Studierender:r) : Düsseldorf, 09.02.2025
+Unterschrift Studierender:r :   
+
+Ort, Datum (Unterschrift Betreuer:in) : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :;
+PRÜFUNGSAMT DUALES STUDIUM
+iu INTERNATIONALE HOCHSCHULE   
+
+ANMELDEFORMULAR BACHELORARBEIT   
+
+Persönliche Daten
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : WiSe 2021
+Matrikelnummer : 102102123   
+
+Der Pflicht-Termin mit dem:der Betreuer:in hat stattgefunden. 
+
+Bitte ausfüllen
+Betreuer der Abschlussarbeit : Max Musterman
+Titel der Abschlussarbeit : Ein Vergleich zwischen KI-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten   
+
+Hiermit stimme ich den Bedingungen in der aktuellen Studien- und Prüfungsordnung der Hochschule zu:   
+
+Ort, Datum (Studierender:r) : Düsseldorf, 09.02.2025
+Unterschrift Studierender:r :   
+
+Ort, Datum (Betreuer:in) : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :   
+
+Druckfehler und Irrtümer vorbehalten
+Datum 25.10.2024;
+PRÜFUNGSAMT DUALES STUDIUM
+ANMELDEFORMULAR BACHELORARBEIT
+iu INTERNATIONALE HOCHSCHULE   
+
+Persönliche Daten   
+
+field name: Nachname : Kasidis
+field name: Vorname : Symeon
+field name: Geburtsdatum : 09.10.2001
+field name: Geburtsort : Giannitsa
+field name: Studiengang : Informatik
+field name: Studienbeginn : WiSe 2021
+field name: Matrikelnummer : 102102123   
+
+Der Pflicht-Termin mit dem/der Betreuer:in hat stattgefunden.   
+
+Bitte ausfüllen   
+
+field name: Betreuer der Abschlussarbeit : Max Mustermann
+field name: Titel der Abschlussarbeit : Ein Vergleich zwischen KI-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten   
+
+Hiermit stimme ich den Bedingungen in der aktuellen Studien- und Prüfungsordnung der Hochschule zu:   
+
+field name: Ort, Datum : Düsseldorf, 09.02.2025
+field name: Unterschrift Studierender:r :   
+
+field name: Ort, Datum : Düsseldorf, 08.02.2025
+field name: Unterschrift Betreuer:in :   
+
+Druckfehler und Irrtümer vorbehalten.
+Datum 25.10.2024;
+PRÜFUNGSAMT
+DUALES STUDIUM   
+
+iu INTERNATIONALE HOCHSCHULE   
+
+ANMELDEFORMULAR BACHELORARBEIT   
+
+Persönliche Daten   
+
+field name: Nachname : Kasidis
+field name: Vorname : Symeon
+field name: Geburtsdatum : 09.10.2001
+field name: Geburtsort : Giannitsa
+field name: Studiengang : Informatik
+field name: Studienbeginn : WiSe 2021
+field name: Matrikelnummer : 102102123   
+
+Der Pflicht-Termin mit dem:der Betreuer:in hat stattgefunden.   
+
+Bitte ausfüllen   
+
+field name: Betreuer der Abschlussarbeit : Max Musterman
+field name: Titel der Abschlussarbeit : Ein Vergleich zwischen KI-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten   
+
+Hiermit stimme ich den Bedingungen in der aktuellen Studien- und Prüfungsordnung der Hochschule zu:   
+
+field name: Ort, Datum (Studierende:r) : Düsseldorf, 09.02.2025
+field name: Unterschrift Studierende:r :   
+
+field name: Ort, Datum (Betreuer:in) : Düsseldorf, 08.02.2025
+field name: Unterschrift Betreuer:in :   
+
+Druckfehler und Irrtümer vorbehalten.   
+
+Datum 25.10.2024

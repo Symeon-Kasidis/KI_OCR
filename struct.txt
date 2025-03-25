@@ -1,0 +1,25 @@
+
+{
+    student: {
+        vorname : String,
+        nachname : String,
+        geburtsdatum : String,
+        geburtsort : String,
+        studiengang : String,
+        studienbeginn : String, 
+        matrikelnummer: String,
+    },
+    title : String,
+    tos: {
+        student: {
+            datum: : String,
+            ort : String,
+            unterschrieben : Boolean
+        },
+        teacher: {
+            datum: String,
+            ort : String,
+            unterschrieben : Boolean
+        }
+    }
+}

@@ -1,0 +1,66 @@
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : WiSe 2021
+Matrikelnummer : 102102123
+Betreuer der Abschlussarbeit : Max Musterman.
+Titel der Abschlussarbeit : Ein Vergleich zwischen Kl-gestützter Analyse und
+Standard OCR Software bei der Verarbeitung von Daten
+Ort, Datum : Düsseldorf, 09.02.2025
+Unterschrift Studierende:r : 
+Ort, Datum : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :;
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : WiSe 2021
+Matrikelnummer : 102102123
+Betreuer der Abschlussarbeit : Max Musterman
+Titel der Abschlussarbeit : Ein Vergleich zwischen Kl-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten
+Ort, Datum : Düsseldorf, 09.02.2025
+Unterschrift Studierende:r : 
+Ort, Datum : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :;
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : Wise 2021
+Matrikelnummer : 102102123
+Betreuer der Abschlussarbeit : Max Musterman
+Titel der Abschlussarbeit : Ein Vergleich zwischen Kl-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten
+Ort, Datum : Düsseldorf, 09.02.2025
+Unterschrift Studierende:r : 
+Ort, Datum : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :;
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : Wise 2021
+Matrikelnummer : 102102123
+Betreuer der Abschlussarbeit : Max Musterman
+Titel der Abschlussarbeit : Ein Vergleich zwischen Kl-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten
+Ort, Datum : Düsseldorf, 09.02.2025
+Unterschrift Studierende:r : 
+Ort, Datum : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :;
+Nachname : Kasidis
+Vorname : Symeon
+Geburtsdatum : 09.10.2001
+Geburtsort : Giannitsa
+Studiengang : Informatik
+Studienbeginn : Wise 2021
+Matrikelnummer : 102102123
+Betreuer der Abschlussarbeit : Max Musterman.
+Titel der Abschlussarbeit : Ein Vergleich zwischen Kl-gestützter Analyse und Standard OCR Software bei der Verarbeitung von Daten
+Ort, Datum : Düsseldorf, 09.02.2025
+Unterschrift Studierende:r : 
+Ort, Datum : Düsseldorf, 08.02.2025
+Unterschrift Betreuer:in :

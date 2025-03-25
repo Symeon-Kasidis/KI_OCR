@@ -1,0 +1,1 @@
+please transcribe the all texts on the image. if the image has input fields use the following format field name : field value. if the field has no value just leave it empty 
