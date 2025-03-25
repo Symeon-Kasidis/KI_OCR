@@ -1,0 +1,4 @@
+matplotlib==3.10.1
+numpy==2.2.4
+python_Levenshtein==0.27.1
+scikit_learn==1.6.1
