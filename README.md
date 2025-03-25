@@ -1,6 +1,6 @@
 # KI_OCR
  
-use can use pip install -r requirements.txt to install all needed libraries
+you can use pip install -r requirements.txt to install all needed libraries
 
 warnings dont efect the end result thez are jsut annoying
 
