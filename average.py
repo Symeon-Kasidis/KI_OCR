@@ -646,7 +646,7 @@ def metricsKCross(data, gt, title):
     answers = {}
     for label, values in data.items():
         #res = [calculate_precision(ground_truth, response) for response in values]
-        res = calculate_k_cross(ground_truth, values)
+        res = calculate_k_cross(gt, values)
         answers[label] = cross_Val_Result(res, round(np.mean(res),2), round(np.std(res),2))
     create_cross_table(answers, title)
 
@@ -940,10 +940,12 @@ form_res = {
 #metrics(form_res, "Bachelorantrag", ground_truth_form)
 
 #metricsROC(leetspeak_res, ground_truth, "Leetspeak")
+
 # Cross Validation
 #metricsKCross(leetspeak_res, ground_truth, "Cross Validation Leetspeak")
 #metricsKCross(jargon_res, ground_truth_jargon, "Cross Validation Jargon")
 #metricsKCross(form_res, ground_truth_form, "Cross Validation Form")
+
 #average_roc(ground_truth, gemini1_responses)
 roc_metrics(jargon_res, ground_truth_jargon)
 
