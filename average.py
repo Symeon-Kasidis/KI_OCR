@@ -6,8 +6,6 @@ import re
 from sklearn.metrics import roc_curve, auc
 import csv
 import warnings
-from scipy import interpolate
-import jiwer
 
 warnings.filterwarnings("ignore")
 
@@ -241,6 +239,24 @@ tesseract_leetspeak = [
 
 tesseract_form_res = read_and_normalize_file("tesseract_form.txt","#")
 
+
+#this for convience since i dont have time to make it pretty but the exact same values can be found on the folder wrong_text/modelName
+#confvalues
+gpt4oLeetspeak_Confvalues = [
+    [95,99,95,95,95,90,85,95,90,99,95,95,99,95,90,90,90,90,99,99,95,90,95,90,85],
+    [95,95,95,90,95,95,85,90,90,95,95,95,95,90,85,90,85,95,95,95,90,95,95,95,95],
+    [95,100,100,100,100,95,90,95,100,100,100,100,100,95,100,100,95,100,100,100,100,100,100,100,100],
+    [100,100,100,100,100,100,90,100,100,100,100,100,100,90,100,100,100,100,100,100,90,100,100,100,100],
+    [95,90,95,95,95,90,85,95,95,95,90,90,95,90,90,90,90,95,90,90,90,95,90,90,85],
+]
+
+gpto1Leetspeak_Confvalues = [
+    [99,98,98,99,99,90,92,99,99,99,94,93,99,99,95,95,94,99,93,88,90,99,98,94,90],
+    [96,95,97,96,98,92,90,96,95,97,93,97,97,89,92,93,92,99,91,90,93,98,95,91,89],
+    [98,97,98,98,99,91,91,98,97,98,94,95,98,94,94,94,93,99,92,90,92,99,97,93,90],
+    [95,80,95,95,95,85,80,95,95,95,80,85,95,90,80,85,80,95,85,85,90,95,80,85,85],
+    [97,93,97,97,98,89,88,97,97,97,93,93,97,93,91,92,91,98,93,88,91,98,94,91,88],
+]
 #Functions
 
 def similarity_percentage(str1: str, str2: str) -> float:
@@ -395,7 +411,6 @@ def read_csv(path:str):
             results.append(row)
     return results
 
-##Useless right now
 def align_responses(ground_truth, recognized_words):
     # Split the ground truth into words
     ground_truth_words_padded = ground_truth.split()
@@ -414,7 +429,7 @@ def align_responses(ground_truth, recognized_words):
     return ground_truth_words_padded, response_words_padded
 
 def binary_classification(ground_truth, recognized_words):
-    # Align the responses and the ground truth
+    # Align the responses and the ground truth if needed
     ground_truth_words_padded, response_words_padded = align_responses(ground_truth, recognized_words)
 
     # Prepare the result for y_true
@@ -434,9 +449,32 @@ def get_roc_and_pr(binary_cl, conf_value):
     avg_scores = np.array(conf_value) / 100
     fpr, tpr, _ = roc_curve(binary_cl, avg_scores)
     roc_auc = auc(fpr, tpr)
+    return roc_auc, fpr, tpr
 
-    return(roc_auc, fpr, tpr)
-##end of useless
+def roc_metrics(data, gt):
+    answers = {}
+    for label, values in data.items():
+        print(label)
+        res = average_roc(gt, values)
+        answers[label] = res
+    visualROC(answers, "ROC")
+
+def roc_conf_values(gt, data):
+    answers = {}
+    for label, values in data.items():
+        aucs = []
+        fprs = []
+        tprs = []
+        i = 0
+        for response in values["res"]:
+            ytrue = binary_classification(gt, response)
+            roc_auc, fpr, tpr = get_roc_and_pr(ytrue, values["conf"][i])
+            aucs.append(roc_auc)
+            fprs.append(fpr)
+            tprs.append(tpr)
+        res = for_ROC_Result(np.mean(aucs), np.mean(tprs, axis=0), np.mean(fprs, axis=0))
+        answers[label] = res
+    visualROC(answers, "ROC")
 
 def create_metric_table(answers):
 
@@ -656,9 +694,9 @@ def word_level_levenshtein_roc_word_only(gt, response, threshold=1):
         ground_word = ground_words[ground_index]
         response_word = response_words[response_index]
 
-        distance = ds(ground_word.lower(), response_word.lower())
-        cer = distance / (len(ground_truth))
-        print(cer)
+        distance = ds(ground_word, response_word)
+        
+        
         y_true_all.append(1 if distance <= threshold else 0)
         y_scores_all.append(1 - (distance / max(len(ground_word), len(response_word), 1)))
 
@@ -705,6 +743,7 @@ def roc_metrics(data, gt):
         res = average_roc(gt, values)
         answers[label] = res
     visualROC(answers, "ROC")
+
 # Define results
 #CLAUDE
 claude35_wt = calc("Claude 3.5", "Wrong Text", ground_truth, claude_responses)
@@ -807,6 +846,10 @@ leetspeak_res = {
     #"Tesseract": tesseract_leetspeak
 }
 
+leetspeak_res_conf = {
+    "GPT 4o": {"res" : gpt4o_responses, "conf": gpt4oLeetspeak_Confvalues} ,
+    "GPT o1 pro": {"res" : gpt1pro_responses, "conf": gpto1Leetspeak_Confvalues},
+}
 jargon_res = {
     "Claude 3.5": claude_jargon_response,
     "Claude 3.7": claude_37_jargon_responses,
@@ -852,6 +895,8 @@ form_res = {
 #metricsKCross(form_res, ground_truth_form, "Cross Validation Form")
 
 #average_roc(ground_truth, gemini1_responses)
-roc_metrics(leetspeak_res, ground_truth)
+#roc_metrics(leetspeak_res, ground_truth)
 #roc_metrics(jargon_res, ground_truth_jargon)
 #roc_metrics(form_res, ground_truth_form)
+
+#roc_conf_values(ground_truth, leetspeak_res_conf)
