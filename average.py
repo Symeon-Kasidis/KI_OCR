@@ -633,6 +633,8 @@ def metrics(data, title, gt):
     create_metric_table(answers)    
     #print(answers.keys, answers.values)
 
+@DeprecationWarning
+#dont use this, this is just scatteplot of the individual tpr and fpr from each response
 def metricsROC(data, gt, title):
     answers = {}
     for label, values in data.items():
@@ -735,7 +737,7 @@ def average_roc(gt, responses, threshold=1):
     mean_auc = auc(mean_fpr, mean_tpr)
     #print(mean_auc, mean_tpr, mean_fpr)
     return for_ROC_Result(mean_auc, mean_tpr, mean_fpr)
-
+#use this for ROc the other method (metricsROC) just returns the scatterplot points for each response and cleans up the duplicates
 def roc_metrics(data, gt):
     answers = {}
     for label, values in data.items():
