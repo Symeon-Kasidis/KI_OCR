@@ -3,10 +3,11 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import re
-from sklearn.metrics import  precision_recall_curve, roc_curve, auc
+from sklearn.metrics import roc_curve, auc
 import csv
 import warnings
-from sklearn.model_selection import KFold
+from scipy import interpolate
+import jiwer
 
 warnings.filterwarnings("ignore")
 
@@ -327,7 +328,7 @@ def visualROC(data, title: str):
     plt.figure(figsize=(8, 5))
     i = 0
     for label, values in data.items():
-        plt.plot(values.fpr, values.tpr, marker='o', linestyle='-', label=label)
+        plt.plot(values.fpr, values.tpr, marker='', linestyle='-', label=label)
         text_box = f"{label} AUC: {values.auc:.3f}"
         plt.text(0.95, 0.95 - (i * 0.05), text_box, transform=plt.gca().transAxes,
                  fontsize=8, verticalalignment='top', horizontalalignment='right',
@@ -545,7 +546,6 @@ def calculate_tp_fp_fn_tn(ground_truth, responses, modelName):
         #in case of tesseract where the results are so bad that precision and sens are zero, it would throw a zero division error so just patch to 0 by default
         #mathematically it should be fine
         f1 =  2 * ((precicion * sensitivity) / (precicion + sensitivity)) if precicion + sensitivity != 0 else 0.0
-        #answers.append(CM_Result(tp,tn,fp,fn))
         pl_answers.append(CM_Result(precicion,accuracy,sensitivity,f1))
     
     precisions = [result.precision for result in pl_answers]
@@ -657,7 +657,8 @@ def word_level_levenshtein_roc_word_only(gt, response, threshold=1):
         response_word = response_words[response_index]
 
         distance = ds(ground_word.lower(), response_word.lower())
-
+        cer = distance / (len(ground_truth))
+        print(cer)
         y_true_all.append(1 if distance <= threshold else 0)
         y_scores_all.append(1 - (distance / max(len(ground_word), len(response_word), 1)))
 
@@ -674,7 +675,6 @@ def word_level_levenshtein_roc_word_only(gt, response, threshold=1):
         y_scores_all.append(0)
         response_index +=1
 
-    #print(y_true_all, y_scores_all)
     fpr, tpr, _ = roc_curve(y_true_all, y_scores_all)
     roc_auc = auc(fpr, tpr)
     #print(roc_auc)
@@ -687,27 +687,16 @@ def average_roc(gt, responses, threshold=1):
 
     for response in responses:
         fpr, tpr, roc_auc = word_level_levenshtein_roc_word_only(gt, response, threshold)
-        tprs.append(np.interp(mean_fpr, fpr, tpr))
-        tprs[-1][0] = 0.0  # Ensure the starting point is 0
-        aucs.append(roc_auc)
+        if not np.isnan(roc_auc):
+            tprs.append(np.interp(mean_fpr, fpr, tpr))
+            tprs[-1][0] = 0.0  # Ensure the starting point is 0
+            aucs.append(roc_auc)
 
     mean_tpr = np.mean(tprs, axis=0)
     #mean_tpr[-1] = 1.0  # Ensure the ending point is 1
     mean_auc = auc(mean_fpr, mean_tpr)
-    std_auc = np.std(aucs)
     #print(mean_auc, mean_tpr, mean_fpr)
     return for_ROC_Result(mean_auc, mean_tpr, mean_fpr)
-    #plt.figure()
-    #plt.plot(mean_fpr, mean_tpr, color='b', label=r'Mean ROC (AUC = %0.2f $\pm$ %0.2f)' % (mean_auc, std_auc), lw=2, alpha=.8)
-    #plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Chance', alpha=.8)
-    #plt.xlim([0, 1])
-    #plt.ylim([0, 1.05])
-    #plt.grid(True)
-    #plt.xlabel('False Positive Rate')
-    #plt.ylabel('True Positive Rate')
-    #plt.title('Average Receiver Operating Characteristic')
-    #plt.legend(loc="lower right")
-    #plt.show()
 
 def roc_metrics(data, gt):
     answers = {}
@@ -815,7 +804,7 @@ leetspeak_res = {
     "GPT 4o": gpt4o_responses,
     "GPT o1 pro": gpt1pro_responses,
     "Deepseek V3": deepseekV3_responses,
-    "Tesseract": tesseract_leetspeak
+    #"Tesseract": tesseract_leetspeak
 }
 
 jargon_res = {
@@ -863,65 +852,6 @@ form_res = {
 #metricsKCross(form_res, ground_truth_form, "Cross Validation Form")
 
 #average_roc(ground_truth, gemini1_responses)
-roc_metrics(jargon_res, ground_truth_jargon)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+roc_metrics(leetspeak_res, ground_truth)
+#roc_metrics(jargon_res, ground_truth_jargon)
+#roc_metrics(form_res, ground_truth_form)
